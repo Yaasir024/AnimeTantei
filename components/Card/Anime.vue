@@ -14,7 +14,7 @@ const props = defineProps(["anime"]);
     </div>
     <div class="pt-3 px-1 text-lg font-bold">
         <h1 v-if="anime.title_english">{{ anime.title_english }}</h1>
-        <h1 v-else>Anime</h1>
+        <h1 v-else>{{anime.title}}</h1>
       
     </div>
   </div>

@@ -2,23 +2,19 @@
 import { useApiStore } from "~/stores/api";
 
 const api = useApiStore();
-onMounted(() => {
-  console.log(`the component is now mounted.`);
-  api.getTopAiringAnime();
-});
 </script>
 
 <template>
   <div class="trending py-5">
-    <HomeSectionHeader :title="'Trending Anime'" :link="'#'" />
-    <div class="py-3 grid grid-cols-4 gap-4">
+    <HomeSectionHeader :title="'Most Popular Anime'" :link="'#'" />
+    <div class="py-3">
       <nuxt-link
         :to="`/anime/${anime.title}`"
         class=""
-        v-for="anime in api.topAiringAnime"
+        v-for="anime in api.mostPopularAnime"
         :key="anime.mal_id"
       >
-        <CardAnime :anime="anime" />
+        <CardSmall :anime="anime" />
       </nuxt-link>
     </div>
   </div>
