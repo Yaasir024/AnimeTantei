@@ -5,11 +5,11 @@ const props = defineProps(["anime"]);
 <template>
   <div class="card min-h-[90px] px-6 pb-4 flex">
     <!-- <div class="mr-2 text-lg font-bold">index</div> -->
-    <div class="mr-4">
+    <div class="mr-4 w-[60px]">
       <img
         :src="anime.images.jpg.image_url"
         alt=""
-        class="w-[60px] h-full overflow-hidden"
+        class="w-full h-full overflow-hidden"
       />
     </div>
     <div class="data">

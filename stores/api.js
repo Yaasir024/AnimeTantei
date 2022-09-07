@@ -48,7 +48,7 @@ export const useApiStore = defineStore({
         .catch((err) => console.error(err));
     },
     getAnimeSchedule(day) {
-      fetch(`https://api.jikan.moe/v4/schedules?filter=${day}&sfw=true`)
+      fetch(`https://api.jikan.moe/v4/schedules?filter=${day}`)
         .then((response) => response.json())
         .then((response) => {
           this.todayAnime = response.data.slice(0, 5);

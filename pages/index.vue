@@ -13,7 +13,7 @@ onMounted(() => {
 });
 
 onMounted(() => {
-  api.getAnimeSchedule("monday");
+  api.getAnimeSchedule("tuesday");
 });
 
 // onMounted(() => {
@@ -34,11 +34,11 @@ onMounted(() => {
     <div class="max-w-[1220px] mx-auto px-6">
       <!-- <Carousel /> -->
       <div class="row flex flex-wrap pt-5">
-        <div class="left flex-2 px-4">
+        <div class="left w-full md:bg-red-400 pt:bg-white pt:flex-2 px-4">
           <HomeSectionTrending />
           <HomeSectionPopularManga />
         </div>
-        <div class="right flex-3 px-4">
+        <div class="right w-full pt:flex-3 px-4">
           <HomeSectionMostPopularAnime />
           <HomeSectionSchedule />
         </div>

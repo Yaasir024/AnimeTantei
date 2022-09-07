@@ -22,6 +22,9 @@ module.exports = {
         "3": "0 0 33.3333%",
       },
     },
+    screens : {
+      'pt': '950px'
+    }
   },
   plugins: [],
 };

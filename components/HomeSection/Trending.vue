@@ -8,7 +8,7 @@ const api = useApiStore();
 <template>
   <div class="trending py-5">
     <HomeSectionHeader :title="'Trending Anime'" :link="'#'" />
-    <div class="py-3 grid grid-cols-4 gap-4">
+    <div class="py-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 pt:grid-cols-3 lg:grid-cols-4 gap-4">
       <nuxt-link
       :to="`/anime/${anime.mal_id}/${anime.title}`" 
         class=""
