@@ -3,14 +3,19 @@ import { useApiStore } from "~/stores/api";
 
 const api = useApiStore();
 onMounted(() => {
+    api.getTopAiringAnime()
+  });
+onMounted(() => {
   api.getTopOngoingManga();
 });
 onMounted(() => {
   api.getMostPopularAnime();
 });
+
 onMounted(() => {
   api.getAnimeSchedule("monday");
 });
+
 // onMounted(() => {
 //   fetch(`https://api.jikan.moe/v4/anime/1/news`)
 //     .then((response) => response.json())
@@ -34,8 +39,8 @@ onMounted(() => {
           <HomeSectionPopularManga />
         </div>
         <div class="right flex-3 px-4">
-          <HomeSectionSchedule />
           <HomeSectionMostPopularAnime />
+          <HomeSectionSchedule />
         </div>
       </div>
       <h1 class="text-red-500">Home Page</h1>

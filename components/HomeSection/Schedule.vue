@@ -13,7 +13,7 @@ const { todayDay } = useTodayDay();
       <h3 class="capitalize">{{ todayDay }}</h3>
     </div>
     <div class="">
-      <nuxt-link to="#" v-for="anime in api.todayAnime" :key="anime.mal_id">
+      <nuxt-link :to="`/anime/${anime.mal_id}/${anime.title}`" v-for="anime in api.todayAnime" :key="anime.mal_id">
         <CardSmall :anime="anime"/>
       </nuxt-link>
     </div>
