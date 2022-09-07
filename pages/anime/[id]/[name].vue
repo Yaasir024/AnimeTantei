@@ -32,9 +32,7 @@ const { data: animeDetails, error } = useAsyncData("animeDetails", async () => {
 <template>
   <div class="min-h-screen text-white bg-dark-100">
     <Navbar />
-
-    {{ animeDetails.title }} {{ animeDetails.images.jpg.large_image_url }}
-    <div class="max-w-[1220px] mx-auto px-6" v-if="animeDetails">
+    <div class="max-w-[1220px] mx-auto pt-8 px-6" v-if="animeDetails">
       <div class="flex flex-wrap">
         <div class="left flex-25% px-2">
           <div class="img mb-2">
@@ -42,39 +40,43 @@ const { data: animeDetails, error } = useAsyncData("animeDetails", async () => {
           </div>
           <div class="">
             <div class="border-b pb-1 text-lg font-semibold">Information</div>
-            <div class="">
-              <p class="text-base font-medium pb-1">
+            <div class="text-sm">
+              <p class="font-medium pb-1">
                 Type: <span class="font-normal">{{ animeDetails.type }}</span>
               </p>
-              <p class="text-base font-medium pb-1">
+              <p class="font-medium pb-1">
                 Episodes:
                 <span class="font-normal">{{ animeDetails.episodes }}</span>
               </p>
-              <p class="text-base font-medium pb-1">
+              <p class="font-medium pb-1">
+                Source:
+                <span class="font-normal">{{ animeDetails.source }}</span>
+              </p>
+              <p class="font-medium pb-1">
                 Status:
                 <span class="font-normal">{{ animeDetails.status }}</span>
               </p>
-              <p class="text-base font-medium pb-1">
+              <p class="font-medium pb-1">
                 Premiered:
                 <span class="font-normal capitalize"
                   >{{ animeDetails.season }} {{ animeDetails.year }}</span
                 >
               </p>
-              <p class="text-base font-medium pb-1">
+              <p class="font-medium pb-1">
                 Aired:
                 <span class="font-normal">{{ animeDetails.aired.string }}</span>
               </p>
-              <p class="text-base font-medium pb-1">
+              <p class="font-medium pb-1">
                 Brodcast:
                 <span class="font-normal">{{
                   animeDetails.broadcast.string
                 }}</span>
               </p>
-              <p class="text-base font-medium pb-1">
+              <p class="font-medium pb-1">
                 Duration:
                 <span class="font-normal">{{ animeDetails.duration }}</span>
               </p>
-              <p class="text-base font-medium pb-1">
+              <p class="font-medium pb-1">
                 Rating:
                 <span class="font-normal">{{ animeDetails.rating }}</span>
               </p>
@@ -171,7 +173,8 @@ const { data: animeDetails, error } = useAsyncData("animeDetails", async () => {
                 {{ animeDetails.synopsis }}
               </p>
             </div>
-            <div class="background mt-3">
+            <!-- Background -->
+            <div class="background mt-8">
               <div class="border-b pb-1 text-lg font-semibold">Background</div>
               <p class="text-base font-normal leading-7" v-if="animeDetails.background">
                 {{ animeDetails.background }}
@@ -185,10 +188,21 @@ const { data: animeDetails, error } = useAsyncData("animeDetails", async () => {
               <div class="border-b pb-1 text-lg font-semibold">Genre</div>
               <p class="text-base font-normal leading-7"  v-if="animeDetails.genres">
                 <span v-for="(genre, index) in animeDetails.genres" :key="index" class="mr-2">
-                {{genre.name}}</span>
+                {{genre.name}}.</span>
               </p>
               <p class="text-base font-normal leading-7" v-else>
                 No genre info yet for {{animeDetails.title}}
+              </p>
+            </div>
+            <!-- Themes -->
+            <div class="theme mt-3">
+              <div class="border-b pb-1 text-lg font-semibold">Themes</div>
+              <p class="text-base font-normal leading-7"  v-if="animeDetails.themes">
+                <span v-for="(theme, index) in animeDetails.themes" :key="index" class="mr-2">
+                {{theme.name}}.</span>
+              </p>
+              <p class="text-base font-normal leading-7" v-else>
+                No theme info yet for {{animeDetails.title}}
               </p>
             </div>
             <!-- Producers -->
@@ -196,7 +210,7 @@ const { data: animeDetails, error } = useAsyncData("animeDetails", async () => {
               <div class="border-b pb-1 text-lg font-semibold">Producers</div>
               <p class="text-base font-normal leading-7"  v-if="animeDetails.producers">
                 <span v-for="(producer, index) in animeDetails.producers" :key="index" class="mr-2">
-                {{producer.name}},</span>
+                {{producer.name}}.</span>
               </p>
               <p class="text-base font-normal leading-7" v-else>
                 No producer info yet for {{animeDetails.title}}
@@ -213,13 +227,34 @@ const { data: animeDetails, error } = useAsyncData("animeDetails", async () => {
                 No studio info yet for {{animeDetails.title}}
               </p>
             </div>
+            <!-- Opening Theme -->
+            <div class="opening mt-3">
+              <div class="border-b pb-1 text-lg font-semibold">Opening Theme</div>
+              <p class="text-base font-normal leading-7"  v-if="animeDetails.theme.openings">
+                <span v-for="(opening, index) in animeDetails.theme.openings" :key="index" class="block">
+                {{opening}}.</span>
+              </p>
+              <p class="text-base font-normal leading-7" v-else>
+                No opening theme yet for {{animeDetails.title}}
+              </p>
+            </div>
+            <!-- Ending Theme -->
+            <div class="opening mt-3">
+              <div class="border-b pb-1 text-lg font-semibold">Ending Theme</div>
+              <p class="text-base font-normal leading-7"  v-if="animeDetails.theme.endings">
+                <span v-for="(ending, index) in animeDetails.theme.endings" :key="index" class="block">
+                {{ending}}.</span>
+              </p>
+              <p class="text-base font-normal leading-7" v-else>
+                No ending theme yet for {{animeDetails.title}}
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     Page {{ id }} {{ name }}
-    {{ animeDetails }}
     AAAAAAAAAA
   </div>
 </template>
