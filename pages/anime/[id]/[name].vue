@@ -12,10 +12,10 @@ const { data: animeDetails, error } = useAsyncData("animeDetails", async () => {
   return response.data;
 });
 
-const showTrailer = false;
-const toggleTrailer = () => {
-  showTrailer.value = !showTrailer.value;
-};
+// const showTrailer = ref(false);
+// const toggleTrailer = () => {
+//   showTrailer.value = !showTrailer.value;
+// };
 
 //Get Anime By ID
 // const getAnimeById = (id) => {
@@ -153,35 +153,36 @@ const toggleTrailer = () => {
               </div>
             </div>
             <div class="left min-h-[20px] w-[200px]">
-              <div class="trailer relative">
-                <img
-                  :src="animeDetails.trailer.images.small_image_url"
-                  alt=""
-                />
-                <div
-                  class="btn-play absolute top-[50%] left-[50%] ml-[-30px] mt-[-14px] flex items-center px-1 py-1 rounded cursor-pointer"
-                  @click="toggleTrailer()"
-                >
-                  <svg
-                    class="mr-1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
+              <a :href="animeDetails.trailer.url" target="_blank">
+                <div class="trailer relative">
+                  <img
+                    :src="animeDetails.trailer.images.small_image_url"
+                    alt=""
+                  />
+                  <div
+                    class="btn-play absolute top-[50%] left-[50%] ml-[-30px] mt-[-14px] flex items-center px-1 py-1 rounded cursor-pointer"
                   >
-                    <path
-                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"
-                    />
-                  </svg>
-                  <span>Play</span>
+                    <svg
+                      class="mr-1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"
+                      />
+                    </svg>
+                    <span>Play</span>
+                  </div>
+                  <div
+                    class="trailer-tag absolute bottom-0 left-0 px-1 py-1 w-full"
+                  >
+                    Trailer
+                  </div>
                 </div>
-                <div
-                  class="trailer-tag absolute bottom-0 left-0 px-1 py-1 w-full"
-                >
-                  Trailer
-                </div>
-              </div>
+              </a>
             </div>
           </div>
           <div class="main mt-4">
@@ -326,11 +327,6 @@ const toggleTrailer = () => {
         </div>
       </div>
     </div>
-    <ModalTrailer
-      :trailerId="animeDetails.trailer.youtube_id"
-      v-if="showTrailer"
-    />
-    {{ animeDetails.trailer.youtube_id }}
   </div>
 </template>
 
