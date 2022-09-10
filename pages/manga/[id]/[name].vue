@@ -3,9 +3,16 @@ const route = useRoute();
 const id = route.params.id;
 const name = route.params.name;
 
-const { data: mangaDetails, error } = useAsyncData("mangaDetails", async () => {
+const {
+  data: mangaDetails,
+  error,
+  refresh,
+} = useAsyncData("mangaDetails", async () => {
   const response = await $fetch(`https://api.jikan.moe/v4/manga/${id}/full`);
   return response.data;
+});
+onBeforeMount(() => {
+  refresh();
 });
 </script>
 
@@ -36,12 +43,16 @@ const { data: mangaDetails, error } = useAsyncData("mangaDetails", async () => {
                 </p>
                 <p class="font-medium pb-1">
                   Chapters:
-                  <span class="font-normal" v-if="mangaDetails.chapters">{{ mangaDetails.chapters }}</span>
+                  <span class="font-normal" v-if="mangaDetails.chapters">{{
+                    mangaDetails.chapters
+                  }}</span>
                   <span class="font-normal" v-else>Unknown</span>
                 </p>
                 <p class="font-medium pb-1">
                   Volumes:
-                  <span class="font-normal" v-if="mangaDetails.volumes">{{ mangaDetails.volumes }}</span>
+                  <span class="font-normal" v-if="mangaDetails.volumes">{{
+                    mangaDetails.volumes
+                  }}</span>
                   <span class="font-normal" v-else>Unknown</span>
                 </p>
                 <p class="font-medium pb-1">
@@ -54,13 +65,11 @@ const { data: mangaDetails, error } = useAsyncData("mangaDetails", async () => {
                     mangaDetails.published.string
                   }}</span>
                 </p>
-                
               </div>
             </div>
           </div>
         </div>
         <div class="right w-full md:flex-75% px-2">
-            
           <div class="top w-full hidden md:flex">
             <div class="left min-h-[20px] w-full py-1 px-2">
               <div class="titles">

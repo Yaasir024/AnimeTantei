@@ -5,32 +5,18 @@ const api = useApiStore();
 const route = useRoute();
 const id = route.params.id;
 const name = route.params.name;
-// const animeDetails = ref([]);
 
-const { data: animeDetails, error } = useAsyncData("animeDetails", async () => {
+const {
+  data: animeDetails,
+  error,
+  refresh,
+} = useAsyncData("animeDetails", async () => {
   const response = await $fetch(`https://api.jikan.moe/v4/anime/${id}/full`);
   return response.data;
 });
-
-// const showTrailer = ref(false);
-// const toggleTrailer = () => {
-//   showTrailer.value = !showTrailer.value;
-// };
-
-//Get Anime By ID
-// const getAnimeById = (id) => {
-//   fetch(`https://api.jikan.moe/v4/anime/${id}/full`)
-//     .then((response) => response.json())
-//     .then((response) => {
-//       animeDetails.value = response.data;
-//       console.log(response.data, "anime");
-//     })
-//     .catch((err) => console.error(err));
-// };
-
-// onBeforeMount(() => {
-//   getAnimeById(id);
-// });
+onBeforeMount(() => {
+  refresh();
+});
 </script>
 
 <template>
