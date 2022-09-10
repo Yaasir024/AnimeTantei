@@ -23,6 +23,11 @@ const setFilter = (value) => {
 const openFilterNav = () => {
   filterNav.value = true;
 };
+// On Click Outside
+const filterNavbar = ref(null);
+useClickOutside(filterNavbar, () => {
+  filterNav.value = false;
+});
 
 const {
   data: topManga,
@@ -72,7 +77,7 @@ const resetValues = () => {
         class="border-b pb-1 text-lg font-semibold flex items-center justify-between"
       >
         <span class="font-semibold">Anime Schedule</span>
-        <div class="relative text-base mr-4">
+        <div class="relative text-base mr-4" ref="filterNavbar">
           <div
             class="Filter py-2 px-3 bg-dark-300 flex items-center cursor-pointer"
             @click="openFilterNav()"
@@ -90,41 +95,43 @@ const resetValues = () => {
               />
             </svg>
           </div>
-          <ul
-            class="dropdown absolute right-[-20px] top-[44px] bg-dark-300 w-36 z-30"
-            v-if="filterNav"
-          >
-            <li
-              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
-              @click="setFilter('')"
+          <transition name="navpopup">
+            <ul
+              class="dropdown absolute right-[-20px] top-[44px] bg-dark-300 w-36 z-30"
+              v-if="filterNav"
             >
-              All
-            </li>
-            <li
-              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
-              @click="setFilter('airing')"
-            >
-              Top Airing
-            </li>
-            <li
-              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
-              @click="setFilter('upcoming')"
-            >
-              Top Upcoming
-            </li>
-            <li
-              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
-              @click="setFilter('bypopularity')"
-            >
-              Most Popular
-            </li>
-            <li
-              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
-              @click="setFilter('favourite')"
-            >
-              Most Favourited
-            </li>
-          </ul>
+              <li
+                class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+                @click="setFilter('')"
+              >
+                All
+              </li>
+              <li
+                class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+                @click="setFilter('airing')"
+              >
+                Top Airing
+              </li>
+              <li
+                class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+                @click="setFilter('upcoming')"
+              >
+                Top Upcoming
+              </li>
+              <li
+                class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+                @click="setFilter('bypopularity')"
+              >
+                Most Popular
+              </li>
+              <li
+                class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+                @click="setFilter('favourite')"
+              >
+                Most Favourited
+              </li>
+            </ul>
+          </transition>
         </div>
       </div>
 
@@ -194,3 +201,17 @@ const resetValues = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Nav Popup Animation */
+.navpopup-enter-active,
+.navpopup-leave-active {
+  transition: transform 0.3s ease;
+  transform-origin: top right;
+}
+
+.navpopup-enter-from,
+.navpopup-leave-to {
+  transform: scale(0);
+}
+</style>

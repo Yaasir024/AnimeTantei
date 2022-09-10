@@ -52,7 +52,7 @@ useClickOutside(mangaNavItem, () => {
       </nuxt-link>
       <div class="link relative" ref="animeNavItem">
         <nuxt-link
-          class="py-2 px-4 hover:bg-[#212529] block"
+          class="py-2 px-4 hover:bg-[#212529] block cursor-default"
           :class="defaultTransition"
           @click="toggleAnimeNav"
         >
@@ -85,7 +85,7 @@ useClickOutside(mangaNavItem, () => {
       </div>
       <div class="link relative" ref="mangaNavItem">
         <nuxt-link
-          class="py-2 px-4 hover:bg-[#212529] block"
+          class="py-2 px-4 hover:bg-[#212529] block cursor-default"
           :class="defaultTransition"
           @click="toggleMangaNav"
         >
@@ -117,7 +117,7 @@ useClickOutside(mangaNavItem, () => {
       </div>
       <nuxt-link
         to="/schedule"
-        class="py-2 px-4 hover:bg-sk-blue-600"
+        class="py-2 px-4 hover:bg-sk-blue-600 "
         :class="defaultTransition"
       >
         Schedule
@@ -172,7 +172,7 @@ useClickOutside(mangaNavItem, () => {
               <div class="">Home</div>
             </nuxt-link>
             <nuxt-link
-              class="mt-2 py-2 px-1 hover:bg-[#212529] block"
+              class="mt-2 py-2 px-1 hover:bg-[#212529] block cursor-default"
               :class="defaultTransition"
             >
               Anime
@@ -190,7 +190,7 @@ useClickOutside(mangaNavItem, () => {
               Top Anime
             </nuxt-link>
             <nuxt-link
-              class="mt-2 py-2 px-1 hover:bg-[#212529] block"
+              class="mt-2 py-2 px-1 hover:bg-[#212529] block cursor-default"
               :class="defaultTransition"
             >
               Manga
@@ -251,11 +251,12 @@ useClickOutside(mangaNavItem, () => {
   </nav>
 </template>
 
-<style>
+<style scoped>
 .link:hover .dropdown {
   display: flex;
 }
 
+/* Mobile Nav */
 .mobilenav-enter-active,
 .mobilenav-leave-active {
   transition: transform 0.5s ease;
@@ -265,6 +266,7 @@ useClickOutside(mangaNavItem, () => {
 .mobilenav-leave-to {
   transform: translateX(100%);
 }
+/* Nav Popup Animation */
 .navpopup-enter-active,
 .navpopup-leave-active {
   transition: transform 0.3s ease;
