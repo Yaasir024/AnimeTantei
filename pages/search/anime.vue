@@ -4,25 +4,29 @@ import { useApiStore } from "~/stores/api";
 const api = useApiStore();
 
 // Filter Values
-const searchValue = ref("");
-const query = ref("Attack on Titan");
+const query = ref("");
+const sfw = ref(true);
+const searchResults = ref([]);
+const loading = ref(false);
+const searchFail = ref(false);
 
-const {
-  data: animeSearch,
-  error,
-  refresh,
-} = useAsyncData("animeSearch", async () => {
-  const response = await $fetch(
-    `https://api.jikan.moe/v4/anime?q=${query.value}&sfw=true&limit=12`
-  );
-  return response.data;
-});
+const searchAnime = () => {
+  const url = `https://api.jikan.moe/v4/anime?q=${query.value}&sfw=${sfw.value}&limit=12`;
+  searchResults.value = "";
+  query.value = "";
+  searchFail.value = false;
+  loading.value = true;
 
-const search = () => {
-    console.log(searchValue.value);
-    query.value = searchValue.value
-    searchValue.value = ''
-    refresh()
+  fetch(url)
+    .then((response) => response.json())
+    .then((response) => {
+      loading.value = false;
+      searchResults.value = response.data;
+      if (response.data.length == 0) {
+        searchFail.value = true;
+      }
+    })
+    .catch((err) => console.error(err));
 };
 </script>
 
@@ -33,14 +37,14 @@ const search = () => {
       <div class="border-b pb-1 text-lg font-semibold">Anime Search</div>
       <div class="search-box max-w-[760px] my-8 mx-auto">
         <div class="">
-          <form @submit.prevent="search">
+          <form @submit.prevent="searchAnime">
             <div
               class="search flex items-center justify-between text-white w-full bg-[#353b48] rounded-3xl h-10 pr-3 overflow-hidden"
             >
               <input
                 type="text"
-                placeholder="Search Manga..."
-                v-model="searchValue"
+                placeholder="Search Anime..."
+                v-model="query"
                 class="flex-1 h-full px-5 outline-none border-none text-base"
               />
               <button type="submit">
@@ -62,18 +66,23 @@ const search = () => {
         </div>
       </div>
 
-      <div
-        class="py-3 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4"
-        v-if="animeSearch"
-      >
-        <nuxt-link
-          :to="`/anime/${anime.mal_id}/${anime.title}`"
-          class=""
-          v-for="anime in animeSearch"
-          :key="anime.mal_id"
+      <div class="" v-if="searchResults.length > 0">
+        <div
+          class="py-3 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4"
         >
-          <CardAnime :anime="anime" />
-        </nuxt-link>
+          <nuxt-link
+            :to="`/anime/${anime.mal_id}/${anime.title}`"
+            class=""
+            v-for="anime in searchResults"
+            :key="anime.mal_id"
+          >
+            <CardAnime :anime="anime" />
+          </nuxt-link>
+        </div>
+      </div>
+      <Loading v-if="loading" />
+      <div class="text-center text-xl" v-if="searchFail">
+        Ooops... Sorry, Can't find Anime
       </div>
     </div>
   </div>
