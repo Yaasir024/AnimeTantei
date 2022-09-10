@@ -27,7 +27,7 @@
         >
           <li class="">
             <nuxt-link
-              to="#"
+              to="/search/anime"
               class="py-2 px-1 hover:bg-sk-blue-600 block cursor-pointer"
             >
               Anime Search
@@ -56,7 +56,7 @@
         >
           <li class="">
             <nuxt-link
-              to="#"
+              to="/search/manga"
               class="py-2 px-1 hover:bg-sk-blue-600 block cursor-pointer"
             >
               Manga Search

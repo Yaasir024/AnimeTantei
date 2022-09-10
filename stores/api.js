@@ -9,6 +9,7 @@ export const useApiStore = defineStore({
     mostPopularAnime: [],
     todayAnime: [],
     currentAnime: [],
+    animeSearchResult: []
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,
