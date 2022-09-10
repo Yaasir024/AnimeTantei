@@ -4,25 +4,32 @@ import { useApiStore } from "~/stores/api";
 const api = useApiStore();
 
 // Filter Values
-const searchValue = ref("");
 const query = ref("");
 const sfw = ref(true);
 const searchResults = ref([]);
+const loading = ref(false);
+const searched = ref(false);
 
 const searchManga = () => {
   const url = `https://api.jikan.moe/v4/manga?q=${query.value}&sfw=${sfw.value}&limit=12`;
+  searchResults.value = "";
+  query.value = "";
+  loading.value = true;
 
   fetch(url)
     .then((response) => response.json())
     .then((response) => {
+      loading.value = false;
       searchResults.value = response.data;
-      console.log(response.data);
+      searched.value = true;
     })
     .catch((err) => console.error(err));
+
 };
 
 const search = () => {
   query.value = "";
+  loading.value = true;
   searchManga();
 };
 </script>
@@ -34,7 +41,7 @@ const search = () => {
       <div class="border-b pb-1 text-lg font-semibold">Manga Search</div>
       <div class="search-box max-w-[760px] my-8 mx-auto">
         <div class="">
-          <form @submit.prevent="search">
+          <form @submit.prevent="searchManga">
             <div
               class="search flex items-center justify-between text-white w-full bg-[#353b48] rounded-3xl h-10 pr-3 overflow-hidden"
             >
@@ -77,7 +84,11 @@ const search = () => {
           </nuxt-link>
         </div>
       </div>
-      <div class="text-center text-xl" v-if="searchResults.length == 0">
+      <Loading v-if="loading" />
+      <div
+        class="text-center text-xl"
+        v-if="searched && searchResults.length == 0"
+      >
         Ooops... Sorry, Can't find Manga
       </div>
     </div>
