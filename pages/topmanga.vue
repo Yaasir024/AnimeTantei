@@ -5,18 +5,23 @@ const api = useApiStore();
 
 // Filter Values
 const filter = ref("");
-const pageFilter = ref(1);
+const filterNav = ref(false);
 
 // Pages
+const pageFilter = ref(1);
 const currentPage = ref(1);
 const prevPage = ref(0);
 const nextPage = ref(2);
 const hasNext = ref(true);
 
 const setFilter = (value) => {
+  filterNav.value = false;
   filter.value = value;
   resetValues();
   refresh();
+};
+const openFilterNav = () => {
+  filterNav.value = true;
 };
 
 const {
@@ -63,38 +68,63 @@ const resetValues = () => {
     <Navbar />
 
     <div class="max-w-[1220px] mx-auto pt-8 px-6 pb-20">
-      <div class="border-b pb-1 text-lg font-semibold">Top Anime</div>
-
-      <div class="horizontal-nav border-b border-sk-blue-600 my-5">
-        <div
-          class="py-1 px-1 break-word hover:bg-sk-blue-600 cursor-pointer inline"
-          @click="setFilter('')"
-        >
-          All Manga
-        </div>
-        <div
-          class="py-1 px-1 break-word hover:bg-sk-blue-600 cursor-pointer inline"
-          @click="setFilter('airing')"
-        >
-          Top Airing
-        </div>
-        <div
-          class="py-1 px-1 break-word hover:bg-sk-blue-600 cursor-pointer inline"
-          @click="setFilter('upcoming')"
-        >
-          Top Upcoming
-        </div>
-        <div
-          class="py-1 px-1 break-word hover:bg-sk-blue-600 cursor-pointer inline"
-          @click="setFilter('bypopularity')"
-        >
-          Most Popular
-        </div>
-        <div
-          class="py-1 px-1 break-word hover:bg-sk-blue-600 cursor-pointer inline"
-          @click="setFilter('favourite')"
-        >
-          Most Favourited
+      <div
+        class="border-b pb-1 text-lg font-semibold flex items-center justify-between"
+      >
+        <span class="font-semibold">Anime Schedule</span>
+        <div class="relative text-base mr-4">
+          <div
+            class="Filter py-2 px-3 bg-dark-300 flex items-center cursor-pointer"
+            @click="openFilterNav()"
+          >
+            <span class="mr-2">Filter by</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"
+              />
+            </svg>
+          </div>
+          <ul
+            class="dropdown absolute right-[-20px] top-[44px] bg-dark-300 w-36 z-30"
+            v-if="filterNav"
+          >
+            <li
+              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+              @click="setFilter('')"
+            >
+              All
+            </li>
+            <li
+              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+              @click="setFilter('airing')"
+            >
+              Top Airing
+            </li>
+            <li
+              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+              @click="setFilter('upcoming')"
+            >
+              Top Upcoming
+            </li>
+            <li
+              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+              @click="setFilter('bypopularity')"
+            >
+              Most Popular
+            </li>
+            <li
+              class="py-2 px-2 hover:bg-sk-blue-600 cursor-pointer"
+              @click="setFilter('favourite')"
+            >
+              Most Favourited
+            </li>
+          </ul>
         </div>
       </div>
 
