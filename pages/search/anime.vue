@@ -28,6 +28,9 @@ const searchAnime = () => {
     })
     .catch((err) => console.error(err));
 };
+useMeta({
+  title: 'AnimeTantei | Search',
+});
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 <script setup>
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router";
 import { useApiStore } from "~/stores/api";
 
 const api = useApiStore();
@@ -6,23 +7,26 @@ const route = useRoute();
 const id = route.params.id;
 const name = route.params.name;
 
-const {
-  data: animeDetails,
-  error,
-  refresh,
-} = useAsyncData("animeDetails", async () => {
-  const response = await $fetch(`https://api.jikan.moe/v4/anime/${id}/full`);
-  return response.data;
+const { animeDetails, searchDetails } = useFetchAnime();
+
+onMounted(() => {
+  searchDetails(id);
 });
-onBeforeMount(() => {
-  refresh();
+
+useMeta({
+  title: 'AnimeTantei',
 });
 </script>
 
 <template>
   <div class="min-h-screen text-white bg-dark-100">
     <Navbar />
-    <div class="max-w-[1220px] mx-auto pt-8 px-6 pb-20" v-if="animeDetails">
+
+    <Loading v-if="animeDetails.length == 0" />
+    <div
+      class="max-w-[1220px] mx-auto pt-8 px-6 pb-20"
+      v-if="animeDetails.length != 0"
+    >
       <div class="flex flex-wrap">
         <!-- Title "Displays On Small Screen" -->
         <div class="titles px-3 mb-2 block md:hidden">

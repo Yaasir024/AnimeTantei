@@ -2,6 +2,14 @@
 import { useApiStore } from "~/stores/api";
 
 const api = useApiStore();
+
+onMounted(() => {
+  window.scrollTo(0, 0);
+})
+
+useMeta({
+  title: 'AnimeTantei',
+});
 </script>
 
 <template>

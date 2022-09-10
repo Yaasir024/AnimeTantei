@@ -66,6 +66,10 @@ const resetValues = () => {
   prevPage.value = 0;
   nextPage.value = 2;
 };
+
+useMeta({
+  title: 'AnimeTantei | Top Manga',
+});
 </script>
 
 <template>

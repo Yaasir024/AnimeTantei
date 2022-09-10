@@ -34,6 +34,9 @@ const {
   );
   return response;
 });
+useMeta({
+  title: 'AnimeTantei',
+});
 </script>
 
 <template>

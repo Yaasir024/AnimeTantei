@@ -2,24 +2,23 @@
 const route = useRoute();
 const id = route.params.id;
 const name = route.params.name;
+const { mangaDetails, searchDetails } = useFetchManga();
 
-const {
-  data: mangaDetails,
-  error,
-  refresh,
-} = useAsyncData("mangaDetails", async () => {
-  const response = await $fetch(`https://api.jikan.moe/v4/manga/${id}/full`);
-  return response.data;
-});
+
+
 onBeforeMount(() => {
-  refresh();
+  searchDetails(id)
+})
+useMeta({
+  title: 'AnimeTantei',
 });
 </script>
 
 <template>
   <div class="min-h-screen text-white bg-dark-100">
     <Navbar />
-    <div class="max-w-[1220px] mx-auto pt-8 px-6 pb-20" v-if="mangaDetails">
+    <Loading v-if="mangaDetails.length == 0"/>
+    <div class="max-w-[1220px] mx-auto pt-8 px-6 pb-20" v-if="mangaDetails.length != 0">
       <div class="flex flex-wrap">
         <!-- Title "Displays On Small Screen" -->
         <div class="titles px-3 mb-2 block md:hidden">

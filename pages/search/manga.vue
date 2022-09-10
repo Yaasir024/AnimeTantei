@@ -35,6 +35,10 @@ const search = () => {
   loading.value = true;
   searchManga();
 };
+
+useMeta({
+  title: 'AnimeTantei | Search',
+});
 </script>
 
 <template>
