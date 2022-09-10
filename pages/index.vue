@@ -38,7 +38,7 @@ onMounted(() => {
           <HomeSectionTrending />
           <HomeSectionPopularManga />
         </div>
-        <div class="right w-full flex-full lg:flex-3 px-4">
+        <div class="right block md:flex lg:block max-w-full flex-full  lg:flex-3 px-4">
           <HomeSectionUpcoming />
           <HomeSectionMostPopularAnime />
         </div>

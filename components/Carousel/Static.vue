@@ -1,7 +1,12 @@
+<script setup>
+const id = ref(1735);
+const name = ref("Naruto: Shippuuden");
+</script>
+
 <template>
   <div class="banner">
     <div class="h-[70vh] relative">
-      <nuxt-link to="/anime/1735/naruto shippuden">
+      <nuxt-link :to="`/anime/${id}/${name}`">
         <img src="/img/naruto.jpg" alt="" class="h-full w-full" />
 
         <div class="details absolute bottom-8 w-full px-4 flex">
@@ -17,7 +22,7 @@
               Konohagakure, the Hidden Leaf Village...
             </p>
             <div class="mb-4">
-              <nuxt-link to="/anime/1735/naruto shippuden" class="flex">
+              <nuxt-link :to="`/anime/${id}/${name}`" class="flex">
                 <span
                   class="py-2 px-5 bg-sk-blue-600 mr-1 font-bold rounded-tl rounded-bl"
                   >View</span

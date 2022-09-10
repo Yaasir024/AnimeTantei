@@ -1,5 +1,4 @@
 <script setup>
-const { todayDay } = useTodayDay();
 
 const filter = ref("upcoming");
 const {

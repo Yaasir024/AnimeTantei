@@ -72,16 +72,8 @@
           </li>
         </ul>
       </div>
-
       <nuxt-link
-        to="#"
-        class="py-2 px-4 hover:bg-sk-blue-600"
-        :class="defaultTransition"
-      >
-        Bookmarks
-      </nuxt-link>
-      <nuxt-link
-        to="#"
+        to="/schedule"
         class="py-2 px-4 hover:bg-sk-blue-600"
         :class="defaultTransition"
       >
