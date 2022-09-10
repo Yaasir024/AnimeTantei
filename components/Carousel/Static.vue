@@ -5,7 +5,7 @@ const name = ref("Naruto: Shippuuden");
 
 <template>
   <div class="banner">
-    <div class="h-[70vh] relative">
+    <div class="h-[60vh] sm:h-[70vh] relative">
       <nuxt-link :to="`/anime/${id}/${name}`">
         <img src="/img/poster.jpg" alt="" class="h-full w-full" />
 
