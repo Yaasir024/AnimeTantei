@@ -38,6 +38,7 @@ const search = () => {
 
 useMeta({
   title: 'AnimeTantei | Search',
+  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
 });
 </script>
 

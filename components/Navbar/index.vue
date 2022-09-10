@@ -35,7 +35,7 @@ useClickOutside(mangaNavItem, () => {
 </script>
 
 <template>
-  <nav class="bg-dark-200 px-5 py-3 flex items-center justify-between">
+  <nav class="bg-dark-200 px-5 py-3 flex items-center justify-between sticky top-0 z-20">
     <nuxt-link to="/">
       <div class="logo text-2xl font-bold">
         <p>anime<span class="text-sk-blue-600">tantei</span></p>

@@ -69,6 +69,7 @@ const resetValues = () => {
 
 useMeta({
   title: 'AnimeTantei | Top Manga',
+  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
 });
 </script>
 
