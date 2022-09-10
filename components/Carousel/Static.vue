@@ -11,10 +11,10 @@ const name = ref("Naruto: Shippuuden");
 
         <div class="details absolute bottom-8 w-full px-4 flex">
           <div class="flex-full max-w-full md:flex-50% md:max-w-[50%]">
-            <div class="label text-sk-blue-600 bg-white py-2 px-5 inline-block">
+            <div class="label text-sk-blue-600 bg-white py-1 px-4 inline-block">
               Adventure
             </div>
-            <h2 class="text-4xl font-bold leading-10 mt-6 mb-2">
+            <h2 class="text-2xl sm:text-4xl font-bold leading-10 mt-4 mb-2">
               Naruto Shippudeen
             </h2>
             <p class="mb-4">
