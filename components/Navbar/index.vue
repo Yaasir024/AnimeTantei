@@ -23,7 +23,7 @@
         </nuxt-link>
 
         <ul
-          class="dropdown absolute left-0 bottom-[-80px] bg-[#212529] px-1 w-32 hidden flex-col"
+          class="dropdown absolute left-0 bottom-[-80px] bg-[#212529] px-1 w-32 hidden flex-col z-40"
         >
           <li class="">
             <nuxt-link
@@ -52,7 +52,7 @@
         </nuxt-link>
 
         <ul
-          class="dropdown absolute left-0 bottom-[-80px] bg-[#212529] px-1 w-32 hidden flex-col"
+          class="dropdown absolute left-0 bottom-[-80px] bg-[#212529] px-1 w-32 hidden flex-col z-40"
         >
           <li class="">
             <nuxt-link
