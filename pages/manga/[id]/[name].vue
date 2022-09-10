@@ -80,7 +80,7 @@ onBeforeMount(() => {
                   {{ mangaDetails.title_japanese }}
                 </div>
               </div>
-              <div class="options flex items-center mt-2">
+              <!-- <div class="options flex items-center mt-2">
                 <div
                   class="flex items-center bg-sk-blue-600 rounded-xl py-2 px-3 cursor-pointer mr-2"
                 >
@@ -119,7 +119,7 @@ onBeforeMount(() => {
                     />
                   </svg>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="main mt-4">
