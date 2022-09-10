@@ -8,12 +8,13 @@ const query = ref("");
 const sfw = ref(true);
 const searchResults = ref([]);
 const loading = ref(false);
-const searched = ref(false);
+const searchFail = ref(false);
 
 const searchManga = () => {
   const url = `https://api.jikan.moe/v4/manga?q=${query.value}&sfw=${sfw.value}&limit=12`;
   searchResults.value = "";
   query.value = "";
+  searchFail.value = false;
   loading.value = true;
 
   fetch(url)
@@ -21,7 +22,9 @@ const searchManga = () => {
     .then((response) => {
       loading.value = false;
       searchResults.value = response.data;
-      searched.value = true;
+      if (response.data.length == 0) {
+        searchFail.value = true;
+      }
     })
     .catch((err) => console.error(err));
 
@@ -87,7 +90,7 @@ const search = () => {
       <Loading v-if="loading" />
       <div
         class="text-center text-xl"
-        v-if="searched && searchResults.length == 0"
+        v-if="searchFail"
       >
         Ooops... Sorry, Can't find Manga
       </div>
