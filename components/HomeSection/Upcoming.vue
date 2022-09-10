@@ -1,14 +1,16 @@
 <script setup>
-import { useApiStore } from "~/stores/api";
-
-const api = useApiStore();
-
 const { todayDay } = useTodayDay();
 
-const filter = ref('upcoming')
-const { data: topUpcomingDetails, error } = useAsyncData("topUpcomingDetails", async () => {
-  const response = await $fetch(`https://api.jikan.moe/v4/top/anime?filter=${filter.value}`);
-  return response.data.slice(0,5);
+const filter = ref("upcoming");
+const {
+  data: topUpcomingDetails,
+  error,
+  refresh,
+} = useAsyncData("topUpcomingDetails", async () => {
+  const response = await $fetch(
+    `https://api.jikan.moe/v4/top/anime?filter=${filter.value}`
+  );
+  return response.data.slice(0, 5);
 });
 </script>
 

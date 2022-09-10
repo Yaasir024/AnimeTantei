@@ -1,17 +1,20 @@
 <script setup>
-import { useApiStore } from "~/stores/api";
+const filter = ref("bypopularity");
 
-const api = useApiStore();
-const filter = ref('bypopularity')
-
-const { data: popularAnime, error } = useAsyncData("popularAnime", async () => {
-  const response = await $fetch(`https://api.jikan.moe/v4/top/anime?filter=${filter.value}`);
-  return response.data.slice(0,5);
+const {
+  data: popularAnime,
+  error,
+  refresh,
+} = useAsyncData("popularAnime", async () => {
+  const response = await $fetch(
+    `https://api.jikan.moe/v4/top/anime?filter=${filter.value}`
+  );
+  return response.data.slice(0, 5);
 });
 </script>
 
 <template>
-  <div class="trending py-5">
+  <div class="trending py-5" v-if="popularAnime">
     <HomeSectionHeader :title="'Most Popular Anime'" :link="'#'" />
     <div class="py-3">
       <nuxt-link
