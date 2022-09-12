@@ -19,12 +19,12 @@ useMeta({
     <div class="max-w-[1220px] mx-auto px-6 py-8">
       <CarouselStatic />
       <div class="row flex flex-wrap pt-5">
-        <div class="left w-full flex-full lg:flex-2 px-4">
+        <div class="left w-full flex-full lg:flex-2">
           <HomeSectionTrending />
           <HomeSectionPopularManga />
         </div>
         <div
-          class="right block md:flex lg:block max-w-full flex-full lg:flex-3 px-4"
+          class="right block md:flex lg:block max-w-full flex-full lg:flex-3"
         >
           <HomeSectionUpcoming />
           <!-- <HomeSectionMostPopularAnime /> -->

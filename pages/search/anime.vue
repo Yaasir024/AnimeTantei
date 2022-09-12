@@ -32,10 +32,6 @@ const searchAnime = () => {
 const trimer = (title) => {
   return title.replace("/", " ");
 };
-useMeta({
-  title: 'AnimeTantei | Search',
-  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
-});
 </script>
 
 <template>

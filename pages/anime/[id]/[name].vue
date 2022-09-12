@@ -7,10 +7,10 @@ const route = useRoute();
 const id = route.params.id;
 const name = route.params.name;
 
-const { animeDetails, searchDetails } = useFetchAnime();
+const { animeDetails, searchAnimeDetails } = useFetchDetails();
 
 onMounted(() => {
-  searchDetails(id);
+  searchAnimeDetails(id);
   window.scrollTo(0, 0);
 });
 

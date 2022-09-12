@@ -2,12 +2,12 @@
 const route = useRoute();
 const id = route.params.id;
 const name = route.params.name;
-const { mangaDetails, searchDetails } = useFetchManga();
+const { mangaDetails, searchMangaDetails } = useFetchDetails();
 
 
 
 onBeforeMount(() => {
-  searchDetails(id)
+  searchMangaDetails(id)
   window.scrollTo(0, 0);
 })
 useMeta({

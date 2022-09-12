@@ -1,13 +1,12 @@
 <script setup>
 import { useApiStore } from "~/stores/api";
-
 const api = useApiStore();
 
-const { todayDay } = useTodayDay();
+const { scheduleData, getData } = useFetchSchedule();
 
 onMounted(() => {
   // filter.value = todayDay;
-  refresh();
+  // refresh();
   // console.log(todayDay.value)
 });
 
@@ -18,24 +17,24 @@ const filterNav = ref(false);
 const setFilter = (value) => {
   filterNav.value = false;
   filter.value = value;
-  refresh();
+  getData(filter.value);
 };
 
 const openFilterNav = () => {
   filterNav.value = true;
 };
 
-const {
-  data: schedule,
-  error,
-  refresh,
-} = useAsyncData("schedule", async () => {
-  const response = await $fetch(
-    `https://api.jikan.moe/v4/schedules?filter=${filter.value}`
-  );
-  window.scrollTo(0, 0);
-  return response;
-});
+// const {
+//   data: schedule,
+//   error,
+//   refresh,
+// } = useAsyncData("schedule", async () => {
+//   const response = await $fetch(
+//     `https://api.jikan.moe/v4/schedules?filter=${filter.value}`
+//   );
+//   window.scrollTo(0, 0);
+//   return response;
+// });
 const trimer = (title) => {
   return title.replace("/", " ");
 };
@@ -120,7 +119,7 @@ useMeta({
           </ul>
         </div>
       </div>
-      <div class="" v-if="schedule">
+      <div class="" v-if="scheduleData.length != 0">
         <div class="border-b pb-1 text-xl font-semibold mt-7 mb-4">
           <span class="capitalize">{{ filter }}</span>
         </div>
@@ -130,7 +129,7 @@ useMeta({
           <nuxt-link
             :to="`/anime/${anime.mal_id}/${trimer(anime.title)}`"
             class=""
-            v-for="anime in schedule.data"
+            v-for="anime in scheduleData"
             :key="anime.mal_id"
           >
             <CardAnime :anime="anime" />

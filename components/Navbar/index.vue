@@ -172,38 +172,26 @@ useClickOutside(mangaNavItem, () => {
               <div class="">Home</div>
             </nuxt-link>
             <nuxt-link
-              class="mt-2 py-2 px-1 hover:bg-[#212529] block cursor-default"
-              :class="defaultTransition"
-            >
-              Anime
-            </nuxt-link>
-            <nuxt-link
               to="/search/anime"
-              class="ml-2 py-2 px-2 hover:bg-sk-blue-600 block cursor-pointer"
+              class="py-2 px-2 hover:bg-sk-blue-600 block cursor-pointer"
             >
               Anime Search
             </nuxt-link>
             <nuxt-link
               to="/topanime"
-              class="ml-2 py-2 px-2 hover:bg-sk-blue-600 block cursor-pointer"
+              class="py-2 px-2 hover:bg-sk-blue-600 block cursor-pointer"
             >
               Top Anime
             </nuxt-link>
             <nuxt-link
-              class="mt-2 py-2 px-1 hover:bg-[#212529] block cursor-default"
-              :class="defaultTransition"
-            >
-              Manga
-            </nuxt-link>
-            <nuxt-link
               to="/search/manga"
-              class="ml-2 py-2 px-2 hover:bg-sk-blue-600 block cursor-pointer"
+              class="py-2 px-2 hover:bg-sk-blue-600 block cursor-pointer"
             >
               Manga Search
             </nuxt-link>
             <nuxt-link
               to="/topmanga"
-              class="ml-2 py-2 px-2 hover:bg-sk-blue-600 block cursor-pointer"
+              class="py-2 px-2 hover:bg-sk-blue-600 block cursor-pointer"
             >
               Top Manga
             </nuxt-link>
