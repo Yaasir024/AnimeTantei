@@ -1,13 +1,13 @@
 <script setup>
-const id = ref(1735);
-const name = ref("Naruto: Shippuuden");
+const id = ref(6922);
+const name = ref("Fate Stay Night: Unlimited Blade Works");
 </script>
 
 <template>
   <div class="banner">
     <div class="h-[60vh] sm:h-[70vh] relative">
       <nuxt-link :to="`/anime/${id}/${name}`">
-        <img src="/img/poster.jpg" alt="" class="h-full w-full" />
+        <img src="/img/hero.jpg" alt="" class="h-full max-w-full" />
 
         <div class="details absolute bottom-8 w-full px-4 flex">
           <div class="flex-full max-w-full md:flex-50% md:max-w-[50%]">
@@ -15,11 +15,10 @@ const name = ref("Naruto: Shippuuden");
               Adventure
             </div>
             <h2 class="text-2xl sm:text-4xl font-bold leading-10 mt-4 mb-2">
-              Naruto Shippudeen
+              Fate / Stay Night: Unlimited Blade Works
             </h2>
             <p class="mb-4">
-              It has been two and a half years since Naruto Uzumaki left
-              Konohagakure, the Hidden Leaf Village...
+              After 30 days of travel across the world...
             </p>
             <!-- <div class="mb-4">
               <nuxt-link :to="`/anime/${id}/${name}`" class="flex">
