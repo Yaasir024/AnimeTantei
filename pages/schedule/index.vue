@@ -5,13 +5,14 @@ const api = useApiStore();
 
 const { todayDay } = useTodayDay();
 
-onBeforeMount(() => {
-  filter.value = todayDay;
+onMounted(() => {
+  // filter.value = todayDay;
   refresh();
+  // console.log(todayDay.value)
 });
 
 // Filter Values
-const filter = ref("");
+const filter = ref("monday");
 const filterNav = ref(false);
 
 const setFilter = (value) => {
@@ -32,11 +33,15 @@ const {
   const response = await $fetch(
     `https://api.jikan.moe/v4/schedules?filter=${filter.value}`
   );
+  window.scrollTo(0, 0);
   return response;
 });
+const trimer = (title) => {
+  return title.replace("/", " ");
+};
 useMeta({
-  title: 'AnimeTantei',
-  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+  title: "AnimeTantei",
+  link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
 });
 </script>
 
@@ -123,7 +128,7 @@ useMeta({
           class="py-3 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4"
         >
           <nuxt-link
-            :to="`/anime/${anime.mal_id}/${anime.title}`"
+            :to="`/anime/${anime.mal_id}/${trimer(anime.title)}`"
             class=""
             v-for="anime in schedule.data"
             :key="anime.mal_id"
@@ -133,6 +138,5 @@ useMeta({
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>

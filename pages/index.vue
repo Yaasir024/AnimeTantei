@@ -27,7 +27,7 @@ useMeta({
           class="right block md:flex lg:block max-w-full flex-full lg:flex-3 px-4"
         >
           <HomeSectionUpcoming />
-          <HomeSectionMostPopularAnime />
+          <!-- <HomeSectionMostPopularAnime /> -->
         </div>
       </div>
     </div>

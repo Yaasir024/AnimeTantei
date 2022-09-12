@@ -21,7 +21,7 @@ const name = ref("Naruto: Shippuuden");
               It has been two and a half years since Naruto Uzumaki left
               Konohagakure, the Hidden Leaf Village...
             </p>
-            <div class="mb-4">
+            <!-- <div class="mb-4">
               <nuxt-link :to="`/anime/${id}/${name}`" class="flex">
                 <span
                   class="py-2 px-5 bg-sk-blue-600 mr-1 font-bold rounded-tl rounded-bl"
@@ -41,7 +41,7 @@ const name = ref("Naruto: Shippuuden");
                   </svg>
                 </div>
               </nuxt-link>
-            </div>
+            </div> -->
           </div>
         </div>
       </nuxt-link>

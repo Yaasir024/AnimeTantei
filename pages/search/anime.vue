@@ -16,6 +16,7 @@ const searchAnime = () => {
   query.value = "";
   searchFail.value = false;
   loading.value = true;
+  window.scrollTo(0, 0);
 
   fetch(url)
     .then((response) => response.json())
@@ -27,6 +28,9 @@ const searchAnime = () => {
       }
     })
     .catch((err) => console.error(err));
+};
+const trimer = (title) => {
+  return title.replace("/", " ");
 };
 useMeta({
   title: 'AnimeTantei | Search',
@@ -75,7 +79,7 @@ useMeta({
           class="py-3 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4"
         >
           <nuxt-link
-            :to="`/anime/${anime.mal_id}/${anime.title}`"
+            :to="`/anime/${anime.mal_id}/${trimer(anime.title)}`"
             class=""
             v-for="anime in searchResults"
             :key="anime.mal_id"

@@ -37,27 +37,29 @@ const {
   const response = await $fetch(
     `https://api.jikan.moe/v4/top/anime?filter=${filter.value}&page=${pageFilter.value}`
   );
+
   currentPage.value = response.pagination.current_page;
   prevPage.value = response.pagination.current_page - 1;
   nextPage.value = response.pagination.current_page + 1;
   hasNext.value = response.pagination.has_next_page;
+  window.scrollTo(0, 0);
   return response;
 });
+
+const trimer = (title) => {
+  return title.replace("/", " ");
+};
 
 const previous = () => {
   if (prevPage.value > 0) {
     pageFilter.value = prevPage.value;
     refresh();
-  } else {
-    console.log("Yaada");
   }
 };
 const next = () => {
   if (hasNext.value == true) {
     pageFilter.value = nextPage.value;
     refresh();
-  } else {
-    console.log("Yaada");
   }
 };
 
@@ -66,17 +68,19 @@ const resetValues = () => {
   prevPage.value = 0;
   nextPage.value = 2;
 };
+// onBeforeMount(() => {
+//   console.log("Agbaks");
+// });
 
 useMeta({
-  title: 'AnimeTantei  | Top Anime',
-  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+  title: "AnimeTantei  | Top Anime",
+  link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
 });
 </script>
 
 <template>
   <div class="min-h-screen text-white bg-dark-100">
     <Navbar />
-
     <div class="max-w-[1220px] mx-auto pt-8 px-6 pb-20">
       <div
         class="border-b pb-1 text-lg font-semibold flex items-center justify-between"
@@ -152,7 +156,7 @@ useMeta({
         v-if="topAnime"
       >
         <nuxt-link
-          :to="`/anime/${anime.mal_id}/${anime.title}`"
+          :to="`/anime/${anime.mal_id}/${trimer(anime.title)}`"
           class=""
           v-for="anime in topAnime.data"
           :key="anime.mal_id"
@@ -166,7 +170,7 @@ useMeta({
             class="bg-dark-300 border border-black flex items-center justify-center py-2 px-3 cursor-pointer"
             title="Previous Page"
             @click="previous()"
-            v-if="prevPage.value != 0"
+            v-if="prevPage != 0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

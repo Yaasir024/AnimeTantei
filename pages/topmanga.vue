@@ -41,6 +41,7 @@ const {
   prevPage.value = response.pagination.current_page - 1;
   nextPage.value = response.pagination.current_page + 1;
   hasNext.value = response.pagination.has_next_page;
+  window.scrollTo(0, 0);
   return response;
 });
 
@@ -65,6 +66,9 @@ const resetValues = () => {
   pageFilter.value = 1;
   prevPage.value = 0;
   nextPage.value = 2;
+};
+const trimer = (title) => {
+  return title.replace("/", " ");
 };
 
 useMeta({
@@ -152,7 +156,7 @@ useMeta({
         v-if="topManga"
       >
         <nuxt-link
-          :to="`/manga/${manga.mal_id}/${manga.title}`"
+          :to="`/manga/${manga.mal_id}/${trimer(manga.title)}`"
           class=""
           v-for="manga in topManga.data"
           :key="manga.mal_id"

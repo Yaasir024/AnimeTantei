@@ -11,6 +11,7 @@ const { animeDetails, searchDetails } = useFetchAnime();
 
 onMounted(() => {
   searchDetails(id);
+  window.scrollTo(0, 0);
 });
 
 useMeta({
@@ -143,7 +144,7 @@ useMeta({
                 </div>
               </div> -->
             </div>
-            <div class="left min-h-[20px] w-[200px]">
+            <div class="left min-h-[20px] w-[200px]" v-if="animeDetails.trailer.url">
               <a :href="animeDetails.trailer.url" target="_blank">
                 <div class="trailer relative">
                   <img

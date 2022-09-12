@@ -16,7 +16,7 @@ const searchManga = () => {
   query.value = "";
   searchFail.value = false;
   loading.value = true;
-
+  window.scrollTo(0, 0);
   fetch(url)
     .then((response) => response.json())
     .then((response) => {
@@ -35,7 +35,9 @@ const search = () => {
   loading.value = true;
   searchManga();
 };
-
+const trimer = (title) => {
+  return title.replace("/", " ");
+};
 useMeta({
   title: 'AnimeTantei | Search',
   link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -83,7 +85,7 @@ useMeta({
           class="py-3 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4"
         >
           <nuxt-link
-            :to="`/manga/${manga.mal_id}/${manga.title}`"
+            :to="`/manga/${manga.mal_id}/${trimer(manga.title)}`"
             class=""
             v-for="manga in searchResults"
             :key="manga.mal_id"

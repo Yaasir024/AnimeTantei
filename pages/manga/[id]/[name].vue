@@ -8,6 +8,7 @@ const { mangaDetails, searchDetails } = useFetchManga();
 
 onBeforeMount(() => {
   searchDetails(id)
+  window.scrollTo(0, 0);
 })
 useMeta({
   title: 'AnimeTantei',
